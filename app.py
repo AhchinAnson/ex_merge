@@ -12,7 +12,7 @@ def get_todos():
 @app.route('/todos', methods=['POST'])
 def add_item():
     items = request.json
-    items.append(todo)
+    todos.append(todo)
     return jsonify(todo), 201
 
 @app.route('/todos/<int:todo_id>', methods=['PUT'])
@@ -20,7 +20,7 @@ def update_todo(todo_id):
     if todo_id >= len(todos) or todo_id < 0:
         return jsonify({'error': 'Todo not found'}), 404
     todo = request.json
-    todos[todo_id] = todo
+    todos[todo_id] = request.json
     return jsonify(todo), 200
 
 @app.route('/todos/<int:todo_id>', methods=['DELETE'])
